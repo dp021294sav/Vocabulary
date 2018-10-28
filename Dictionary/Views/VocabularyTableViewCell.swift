@@ -20,7 +20,7 @@ class VocabularyTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    func update(englishWord: String) {
+    func update(englishWord: String, translate: String) {
         englishLabel.text = englishWord
     }
 }

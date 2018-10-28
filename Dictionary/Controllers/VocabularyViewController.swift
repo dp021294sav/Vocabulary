@@ -10,6 +10,9 @@ import UIKit
 
 class VocabularyViewController: UIViewController {
 
+    private var isSearchActive = false
+    
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -17,8 +20,15 @@ class VocabularyViewController: UIViewController {
         title = "Мой словарь"
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.keyboardDismissMode = .onDrag
+        searchBar.delegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showInfo" else {return}
         guard let destVC = segue.destination as? DetailsViewController else {return}
@@ -31,13 +41,34 @@ class VocabularyViewController: UIViewController {
 
 extension VocabularyViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.instance.rememberedWords.count
+        return isSearchActive ? DataManager.instance.filteredWords.count :
+            DataManager.instance.rememberedWords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
-        let word = DataManager.instance.rememberedWords[indexPath.row]
-        cell.update(englishWord: word.englishWord)
+        let word = isSearchActive ? DataManager.instance.filteredWords[indexPath.row] : DataManager.instance.rememberedWords[indexPath.row]
+        cell.update(englishWord: word.englishWord, translate: word.translate)
         return cell
+    }
+}
+
+extension VocabularyViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        DataManager.instance.filteredWords = []
+        
+        isSearchActive = !searchText.isEmpty
+        
+        for item in DataManager.instance.rememberedWords {
+            if item.englishWord.lowercased() .contains(searchText.lowercased()) || item.translate.lowercased().contains(searchText.lowercased()) {
+                DataManager.instance.filteredWords.append(item)
+            }
+        }
+        tableView.reloadData()
     }
 }
