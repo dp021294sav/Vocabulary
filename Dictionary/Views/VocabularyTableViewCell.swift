@@ -13,7 +13,6 @@ class VocabularyTableViewCell: UITableViewCell {
     @IBOutlet private weak var iconView: UIView!
     @IBOutlet private weak var englishLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         iconView.layer.cornerRadius = iconView.bounds.width / 2
@@ -21,6 +20,6 @@ class VocabularyTableViewCell: UITableViewCell {
     }
 
     func update(englishWord: String, translate: String) {
-        englishLabel.text = englishWord
+        englishLabel.text = englishWord + " - " + translate
     }
 }

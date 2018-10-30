@@ -13,7 +13,6 @@ class NewWordViewController: UIViewController {
     @IBOutlet private weak var englishTextField: UITextField!
     @IBOutlet private weak var translateTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Новое слово"

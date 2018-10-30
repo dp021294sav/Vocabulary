@@ -14,7 +14,6 @@ final class DataManager {
     
     private (set) var newWords: [Word] = []
     private (set) var rememberedWords: [Word] = []
-    var filteredWords: [Word] = []
     
     func addWord(_ word: Word) {
         newWords.append(word)

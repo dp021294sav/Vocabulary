@@ -11,6 +11,7 @@ import UIKit
 class WordListViewController: UIViewController {
     
     private var isSearchActive = false
+    private var filteredWords: [Word] = []
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
@@ -40,13 +41,13 @@ class WordListViewController: UIViewController {
 
 extension WordListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearchActive ? DataManager.instance.filteredWords.count : DataManager.instance.newWords.count
+        return isSearchActive ? filteredWords.count : DataManager.instance.newWords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewWordTableViewCell", for: indexPath) as! NewWordTableViewCell
-        let word = isSearchActive ? DataManager.instance.filteredWords[indexPath.row] : DataManager.instance.newWords[indexPath.row]
-        cell.update(englishWord: word.englishWord, translate: word.translate)
+        let word = isSearchActive ? filteredWords[indexPath.row] : DataManager.instance.newWords[indexPath.row]
+        cell.update(englishWord: word.englishWord)
         return cell
     }
 }
@@ -59,13 +60,13 @@ extension WordListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        DataManager.instance.filteredWords = []
+        filteredWords = []
         
         isSearchActive = !searchText.isEmpty
         
         for item in DataManager.instance.newWords {
             if item.englishWord.lowercased() .contains(searchText.lowercased()) {
-                DataManager.instance.filteredWords.append(item)
+                filteredWords.append(item)
             }
         }
         tableView.reloadData()
