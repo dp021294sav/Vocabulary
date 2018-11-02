@@ -29,4 +29,13 @@ final class DataManager {
         guard let removeIndex = rememberedWords.index(of: word) else {return}
         rememberedWords.remove(at: removeIndex)
     }
+    
+    func removeRowFromVocabulary(index: Int) {
+        rememberedWords.remove(at: index)
+    }
+    
+    func moveRowsAtWordList(word: Word, moveFromIndex: Int, toIndex: Int) {
+        newWords.remove(at: moveFromIndex)
+        newWords.insert(word, at: toIndex)
+    }
 }

@@ -21,6 +21,7 @@ class WordListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
+        tableView.isEditing = true
         searchBar.delegate = self
         title = "Слова"
     }
@@ -45,10 +46,27 @@ extension WordListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewWordTableViewCell", for: indexPath) as! NewWordTableViewCell
+       guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewWordTableViewCell", for: indexPath) as? NewWordTableViewCell else {
+            fatalError("Cell is not created")
+        }
         let word = isSearchActive ? filteredWords[indexPath.row] : DataManager.instance.newWords[indexPath.row]
         cell.update(englishWord: word.englishWord)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath,
+                   to: IndexPath) {
+        //ошибка может быть тут
+        let word = DataManager.instance.newWords[fromIndexPath.row]
+        DataManager.instance.moveRowsAtWordList(word: word, moveFromIndex: fromIndexPath.row, toIndex: to.row)
     }
 }
 

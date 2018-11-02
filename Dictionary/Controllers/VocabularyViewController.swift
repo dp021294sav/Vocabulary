@@ -47,10 +47,24 @@ extension VocabularyViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
+       guard let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as? VocabularyTableViewCell else {
+            fatalError("Cell is not created")
+        }
         let word = isSearchActive ? filteredWords[indexPath.row] : DataManager.instance.rememberedWords[indexPath.row]
         cell.update(englishWord: word.englishWord, translate: word.translate)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else {return}
+        DataManager.instance.removeRowFromVocabulary(index: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
 

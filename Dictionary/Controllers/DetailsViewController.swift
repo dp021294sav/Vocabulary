@@ -21,10 +21,9 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         englishLabel.text = word?.englishWord
         russianLabel.text = word?.translate
-        switch isNewWord {
-        case true:
+        if isNewWord == true {
             button.setTitle("Запомнил", for: .normal)
-        case false:
+        } else {
             button.setTitle("Вернуть", for: .normal)
         }
     }
@@ -32,10 +31,9 @@ class DetailsViewController: UIViewController {
     @IBAction func rememberedPressed(_ sender: Any) {
         guard let word = word else {return}
         navigationController?.popViewController(animated: true)
-        switch isNewWord {
-        case true:
+        if isNewWord == true {
             DataManager.instance.markAsRemembered(word: word)
-        case false:
+        } else {
             DataManager.instance.addWord(word)
             DataManager.instance.removeFromVocabulary(word)
         }

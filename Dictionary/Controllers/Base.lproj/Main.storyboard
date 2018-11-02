@@ -89,7 +89,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PNL-54-o9a">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="qKf-UL-X4r" kind="show" id="7dA-Vq-TGM"/>
+                                <segue destination="qKf-UL-X4r" kind="show" identifier="showNewWordViewController" id="7dA-Vq-TGM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -140,7 +140,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEM-CP-6sV">
-                                <rect key="frame" x="117" y="507" width="140" height="60"/>
+                                <rect key="frame" x="117.5" y="507" width="140" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="kMG-bS-iGM"/>
@@ -353,6 +353,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WuK-73-Mvw"/>
+        <segue reference="STf-uY-MH8"/>
     </inferredMetricsTieBreakers>
 </document>
