@@ -10,12 +10,15 @@ import UIKit
 
 class VocabularyViewController: UIViewController {
 
+    // MARK: - Properties
     private var isSearchActive = false
     private var filteredWords: [Word] = []
     
+    // MARK: - Outlets
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Мой словарь"
@@ -23,6 +26,7 @@ class VocabularyViewController: UIViewController {
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
         searchBar.delegate = self
+        tableView.isEditing = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +34,7 @@ class VocabularyViewController: UIViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showInfo" else {return}
         guard let destVC = segue.destination as? DetailsViewController else {return}
@@ -40,6 +45,7 @@ class VocabularyViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension VocabularyViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearchActive ? filteredWords.count :
@@ -68,6 +74,7 @@ extension VocabularyViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension VocabularyViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lA0-7P-YzO">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -63,23 +63,41 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ap8-vM-cdy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="99" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsA-gf-VUD">
+                                <rect key="frame" x="257" y="66" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rx7-H9-PBv"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editing Style:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuc-iG-5s2">
+                                <rect key="frame" x="91.5" y="64" width="117.5" height="35"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lA0-7P-YzO" secondAttribute="bottom" id="13E-Bp-pWX"/>
-                            <constraint firstItem="ap8-vM-cdy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2Ob-Ff-8L3"/>
+                            <constraint firstItem="ap8-vM-cdy" firstAttribute="top" secondItem="tsA-gf-VUD" secondAttribute="bottom" constant="2" id="5ok-9i-r6w"/>
                             <constraint firstItem="ap8-vM-cdy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Av8-Fm-a54"/>
+                            <constraint firstItem="Zuc-iG-5s2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" multiplier="0.8" id="D5l-Yl-adO"/>
                             <constraint firstItem="ap8-vM-cdy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Dby-cS-U2f"/>
+                            <constraint firstItem="tsA-gf-VUD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" multiplier="1.5" id="Dz5-zc-61g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lA0-7P-YzO" secondAttribute="trailing" id="NwF-re-JeH"/>
                             <constraint firstItem="lA0-7P-YzO" firstAttribute="top" secondItem="ap8-vM-cdy" secondAttribute="bottom" id="Unu-Lh-lXd"/>
+                            <constraint firstItem="ap8-vM-cdy" firstAttribute="top" secondItem="Zuc-iG-5s2" secondAttribute="bottom" id="iIQ-7g-RSA"/>
                             <constraint firstItem="lA0-7P-YzO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pem-WG-I7u"/>
+                            <constraint firstItem="Zuc-iG-5s2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="reh-hg-lTy"/>
+                            <constraint firstItem="tsA-gf-VUD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="zSh-Ag-Cau"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="RCI-77-fC1">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Мой словарь" id="Gwf-Yl-QhN">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -94,6 +112,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editingStyleSwitch" destination="tsA-gf-VUD" id="Qvq-BB-1dI"/>
                         <outlet property="searchBar" destination="ap8-vM-cdy" id="kBP-to-qcC"/>
                         <outlet property="tableView" destination="lA0-7P-YzO" id="mxV-Pv-xVh"/>
                     </connections>

@@ -10,13 +10,16 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
+    // MARK: - Properties
+    var isNewWord = true
+    var word: Word?
+    
+    // MARK: - Outlets
     @IBOutlet private weak var englishLabel: UILabel!
     @IBOutlet private weak var russianLabel: UILabel!
     @IBOutlet private weak var button: UIButton!
     
-    var isNewWord = true
-    var word: Word?
-    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         englishLabel.text = word?.englishWord
@@ -26,6 +29,7 @@ class DetailsViewController: UIViewController {
         } else {
             button.setTitle("Вернуть", for: .normal)
         }
+        
     }
     
     @IBAction func rememberedPressed(_ sender: Any) {

@@ -10,9 +10,11 @@ import UIKit
 
 class NewWordViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet private weak var englishTextField: UITextField!
     @IBOutlet private weak var translateTextField: UITextField!
     
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Новое слово"
