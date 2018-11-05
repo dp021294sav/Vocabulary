@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JEs-Xk-vJq">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VocabularyTableViewCell" id="iAh-eT-kTp" customClass="VocabularyTableViewCell" customModule="Dictionary" customModuleProvider="target">
@@ -248,23 +248,41 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wsn-dp-MuE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="99" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xN-Nc-y5L">
+                                <rect key="frame" x="257" y="66" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="GEm-hF-KsG" eventType="valueChanged" id="zEG-hi-wpu"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editing style:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9i-lM-Obz">
+                                <rect key="frame" x="92" y="64" width="116" height="35"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="JEs-Xk-vJq" secondAttribute="trailing" id="2rM-n5-MMH"/>
+                            <constraint firstItem="Wsn-dp-MuE" firstAttribute="top" secondItem="d9i-lM-Obz" secondAttribute="bottom" id="AiS-MY-oXU"/>
                             <constraint firstItem="Wsn-dp-MuE" firstAttribute="trailing" secondItem="JXZ-tF-sFV" secondAttribute="trailing" id="MPb-Np-8Gp"/>
-                            <constraint firstItem="Wsn-dp-MuE" firstAttribute="top" secondItem="JXZ-tF-sFV" secondAttribute="top" id="NpK-sU-I1Y"/>
+                            <constraint firstItem="JEs-Xk-vJq" firstAttribute="top" secondItem="Wsn-dp-MuE" secondAttribute="bottom" id="RDW-gm-Yvy"/>
                             <constraint firstItem="Wsn-dp-MuE" firstAttribute="leading" secondItem="JXZ-tF-sFV" secondAttribute="leading" id="SFh-TR-98h"/>
+                            <constraint firstItem="1xN-Nc-y5L" firstAttribute="centerX" secondItem="JXZ-tF-sFV" secondAttribute="centerX" multiplier="1.5" id="VZC-0S-cAp"/>
+                            <constraint firstItem="d9i-lM-Obz" firstAttribute="top" secondItem="JXZ-tF-sFV" secondAttribute="top" id="Y5L-HC-lQ3"/>
+                            <constraint firstItem="Wsn-dp-MuE" firstAttribute="top" secondItem="1xN-Nc-y5L" secondAttribute="bottom" constant="2" id="d8d-fe-Suh"/>
                             <constraint firstItem="JXZ-tF-sFV" firstAttribute="bottom" secondItem="JEs-Xk-vJq" secondAttribute="bottom" id="gQj-0P-bE9"/>
                             <constraint firstItem="JEs-Xk-vJq" firstAttribute="leading" secondItem="JXZ-tF-sFV" secondAttribute="leading" id="q6k-1i-C8q"/>
-                            <constraint firstItem="JEs-Xk-vJq" firstAttribute="top" secondItem="Wsn-dp-MuE" secondAttribute="bottom" id="zrc-Ba-W5w"/>
+                            <constraint firstItem="1xN-Nc-y5L" firstAttribute="top" secondItem="JXZ-tF-sFV" secondAttribute="top" constant="2" id="sp7-UT-EdH"/>
+                            <constraint firstItem="d9i-lM-Obz" firstAttribute="centerX" secondItem="JXZ-tF-sFV" secondAttribute="centerX" multiplier="0.8" id="wFk-R7-rWj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JXZ-tF-sFV"/>
                     </view>
                     <connections>
+                        <outlet property="editingStyleSwitch" destination="1xN-Nc-y5L" id="vJ6-TA-Ocv"/>
                         <outlet property="searchBar" destination="Wsn-dp-MuE" id="oDR-Xe-qMa"/>
                         <outlet property="tableView" destination="JEs-Xk-vJq" id="PYv-2p-Ork"/>
                     </connections>
@@ -372,6 +390,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="STf-uY-MH8"/>
+        <segue reference="WuK-73-Mvw"/>
     </inferredMetricsTieBreakers>
 </document>

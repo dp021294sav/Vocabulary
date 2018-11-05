@@ -15,6 +15,8 @@ class VocabularyViewController: UIViewController {
     private var filteredWords: [Word] = []
     
     // MARK: - Outlets
+    
+    @IBOutlet private weak var editingStyleSwitch: UISwitch!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     
@@ -26,12 +28,20 @@ class VocabularyViewController: UIViewController {
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
         searchBar.delegate = self
-        tableView.isEditing = true
+        editingStyleSwitch.isOn = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableView.reloadData()
+    }
+    
+    @IBAction func switchValueChanged(_ sender: Any) {
+        if editingStyleSwitch.isOn == true {
+            tableView.isEditing = true
+        } else {
+            tableView.isEditing = false
+        }
     }
     
     // MARK: - Prepare for segue
