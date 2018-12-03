@@ -18,6 +18,13 @@ class NewWordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Новое слово"
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboards(_ :)))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func hideKeyboards(_ gesture: UITapGestureRecognizer) {
+        englishTextField.resignFirstResponder()
+        translateTextField.resignFirstResponder()
     }
 
     @IBAction func savePressed(_ sender: Any) {
